@@ -1,0 +1,64 @@
+// Custom styling per movie card using Bootstrap 4 and overriding some
+// framework css
+sort-by {
+  padding: 60px 0 0;
+}
+
+.moviesDisplay {
+  padding: 60px 0 60px;
+  &__card {
+    padding-bottom: 20px;
+  }
+}
+.card {
+  flex-direction: row;
+  border-radius: 0;
+  border: 0;
+
+  .img-holder {
+    background-color: #b2b19c;
+  }
+  .card-title {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+  }
+  .card-block {
+    background-color: #fffee0;
+  }
+}
+
+.fa-star {
+  color: #ef006d;
+}
+
+.fa-star-o {
+  color: #2666eb;
+}
+dt {
+  font-weight: normal;
+}
+
+
+
+
+.img-holder{
+    float: left;
+    width: 154px;
+}
+
+.card-block{
+    width: calc(100% - 154px);
+}
+
+.MovieDetailsCard{
+    dl{
+        margin-bottom: 0px;
+    }
+
+    .review-comments{
+        margin-bottom: 12px;
+        max-height: 48px;
+        min-height: 48px;
+        overflow: hidden;
+    }
+}
