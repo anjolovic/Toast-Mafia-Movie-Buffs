@@ -21,6 +21,22 @@ gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Additinal gems for the project
+gem 'bootstrap', '~> 4.0.0.beta'
+gem "font-awesome-rails"
+gem 'jquery-rails'
+# pull movie data from
+gem 'themoviedb-api'
+gem 'kaminari'
+# background worker
+gem 'sidekiq'
+gem 'pry'
+# templating for rails
+gem "slim-rails"
+# webpacker react
+gem 'webpacker-react'
+# serializers
+gem 'active_model_serializers', '~> 0.10.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -42,6 +58,11 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
