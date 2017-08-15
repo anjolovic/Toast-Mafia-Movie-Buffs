@@ -20,5 +20,9 @@ module ToastMafia
     end
 
     Tmdb::Api.key("ad81bcc1b4db8b7b3970bd8877c59690")
+
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 end
