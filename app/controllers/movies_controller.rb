@@ -1,23 +1,40 @@
 class MoviesController < ApplicationController
+  include MoviesHelper
   skip_before_action :verify_authenticity_token
 
   def index
-    current_sort_order = session[:sort_order] || sort_order
-    @movies = serialize_collection(Movie.order(current_sort_order)
-                                    .page(page_number)
-                                    .includes(:genres, :reviews))
-  end
-
-  def set_sort_order
-    session[:sort_order] = sort_order
-    head :ok
+    movies = serialize_collection(Movie.order(current_sort_order)
+                                   .page(page_number)
+                                   .includes(:genres, :reviews))
+    if request.xhr?
+      render json: movies_index_data(movies).to_json
+    else
+      render 'index', locals: {movies_index_data: movies_index_data(movies)}
+    end
   end
 
   private
 
+  def movies_index_data(movies)
+    Rails.logger.debug current_sort_order
+    {
+      routes: react_routes,
+      movies: movies,
+      sort_order: current_sort_order
+    }
+  end
+
+  def current_sort_order
+    if params[:sort_order].present?
+      session[:sort_order] = sort_order
+    end
+
+    session[:sort_order]
+  end
+
   def serialize_collection(movies)
     ActiveModel::Serializer::CollectionSerializer.new(movies,
-                                                      each_serializer: MovieSerializer)
+                                                      serializer: MovieSerializer)
       .as_json
   end
 
