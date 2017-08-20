@@ -8,13 +8,21 @@ class MovieIndex extends React.Component {
   constructor(props) {
     super(props);
     this.flushSortOrder = this.flushSortOrder.bind(this);
-    this.state = {};
+    this.state = {
+      sort_order: this.props.sort_order,
+      movies: this.props.movies,
+      routes: this.props.routes
+    };
   }
 
   flushSortOrder (sortOrder) {
-    const url = this.props.routes.movies_set_sort_order_path;
-    jQuery.post(url, {sort_order: sortOrder}).done(function(){
-      window.location.reload();
+    this.reloadIndex(sortOrder);
+  }
+
+  reloadIndex (sortOrder) {
+    const _this = this;
+    jQuery.get(window.location.href, {sort_order: sortOrder}).done(function(data){
+      _this.setState(data);
     });
   }
 
@@ -22,14 +30,16 @@ class MovieIndex extends React.Component {
     return(
       <section className="MovieIndex">
         <header className="container">
-        <SortBy
-           setSortOrder={ this.flushSortOrder }
-           />
-       </header>
-        <article className="moviesDisplay container">
+          <SortBy
+             sortOrder={ this.state.sort_order }
+             setSortOrder={ this.flushSortOrder }
+             />
+        </header>
+
+        <article className="container">
           <MovieList
-             routes={ this.props.routes }
-             movies={ this.props.movies }/>
+             routes={ this.state.routes }
+             movies={ this.state.movies }/>
         </article>
       </section>
     );

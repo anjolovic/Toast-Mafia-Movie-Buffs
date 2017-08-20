@@ -7,6 +7,14 @@ class MovieList extends React.Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    this.setState({
+      routes: nextProps.routes,
+      movies: nextProps.movies
+    });
+  }
+
   renderMoviesList() {
     return this.props.movies.map((movie) => {
       return this.renderMovie(movie);
@@ -15,18 +23,21 @@ class MovieList extends React.Component {
 
   renderMovie(movie) {
     return (
+      <div key={movie.id} >
         <Movie
            routes={ this.props.routes }
-           movie={ movie }
-           key={movie.id}/>
+           movie={ movie } />
+      </div>
     );
   }
 
   render() {
     return (
       <div className="MovieList">
-        <div class="row">
-          { this.renderMoviesList() }
+        <div className="row">
+          <div className="col-md-8">
+            { this.renderMoviesList() }
+          </div>
         </div>
       </div>
     );

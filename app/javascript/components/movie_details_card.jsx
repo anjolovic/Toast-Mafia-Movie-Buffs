@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReviewRating from 'components/review_rating';
 
 class MovieDetailsCard extends React.Component {
   constructor (props) {
@@ -22,8 +23,17 @@ class MovieDetailsCard extends React.Component {
   renderReviewComments() {
     return this.state.reviews.map(function(review) {
       return (
-        <div key={review[0]}>
-          { review[1] }
+        <div className="col-sm-12" key={review.id}>
+          <div className="row">
+            <ReviewRating
+               className="col-sm-4"
+               readOnly={ true }
+               rating={ parseFloat(review.rating, 10) || 0 }
+               />
+            <div className="col-sm-8">
+              { review.content }
+            </div>
+          </div>
         </div>
       );
     });
