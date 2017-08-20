@@ -27,23 +27,32 @@ sort-by {
   }
 }
 
-.fa-star {
-  color: #ef006d;
-}
-
-.fa-star-o {
-  color: #2666eb;
-}
 dt {
   font-weight: normal;
 }
 
-
-
+.btn {
+  display: inline-block;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  padding: 0.2rem 0.55rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  border-radius: 0.1rem;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
 
 .img-holder{
     float: left;
-    width: 154px;
+    width: 153px;
 }
 
 .card-block{
@@ -61,4 +70,15 @@ dt {
         min-height: 48px;
         overflow: hidden;
     }
+}
+
+.activeButton {
+  background-color: #9947f3;
+  color: white;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: none;
+    border-color: none;
 }
