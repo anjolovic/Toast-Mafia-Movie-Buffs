@@ -16,7 +16,7 @@ class ReviewEmail extends React.Component {
   }
 
   errorClass() {
-    return this.state.error ? "alert alert-danger" : "";
+    return this.state.error ? "danger" : "";
   }
 
   displayError() {
@@ -26,14 +26,13 @@ class ReviewEmail extends React.Component {
   render() {
     return(
       <div className={ `${this.props.className} ${this.errorClass()}` }>
-        <input type="text" className="form-control" onChange={ this.props.onChange } placeholder="Enter Your Email"/>
+        <input type="text" className="form-control" onChange={ this.props.onChange } />
         <small className={`form-control-feedback ${this.displayError()}`}>
           Please enter email.
         </small>
       </div>
     );
   }
-
 }
 
 export default ReviewEmail;

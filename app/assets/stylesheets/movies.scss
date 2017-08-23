@@ -1,13 +1,96 @@
-// Custom styling per movie card using Bootstrap 4 and overriding some
-// framework css
-sort-by {
+// Place all the styles related to the movies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.Rating{
+    color: #ef006d !important;
+    padding-right: 4px;
+}
+
+.img-holder{
+    float: left;
+    width: 204px;
+    padding-top: 20px;
+}
+
+.card-block{
+    width: calc(100% - 204px);
+}
+
+.MovieDetailsCard{
+    dl{
+        margin-bottom: 0px;
+    }
+
+    .Rating{
+        font-size: 1.0em !important;
+    }
+}
+
+.MoviePoster{
+     text-align: center;
+    .Rating{
+        font-size: 1.0rem !important;
+    }
+}
+
+.ReviewMovie{
+    .Rating{
+        font-size: 1rem !important;
+    }
+
+    .col-form-label{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    input{
+        line-height: 0.75;
+    }
+}
+
+.RecentReviews, .RecentMovies{
+    padding-top: 60px;
+    .content{
+        max-height: 200px;
+    }
+
+    .card-block{
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+    }
+
+    .Rating{
+        font-size: 1.0em !important;
+    }
+
+    .review, .movie{
+        margin-bottom: 15px;
+        max-height: 142px;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+
+.btn-secondary:active, .btn-secondary.active, .show > .btn-secondary.dropdown-toggle {
+  background-color: #007bff;
+  background-image: none;
+  border-color: #868e96;
+}
+
+.sort-by {
   padding: 60px 0 0;
 }
 
 .moviesDisplay {
-  padding: 60px 0 60px;
+  padding-top: 40px;
   &__card {
-    padding-bottom: 20px;
+    margin-bottom: 20px;
   }
 }
 .card {
@@ -16,7 +99,7 @@ sort-by {
   border: 0;
 
   .img-holder {
-    background-color: #b2b19c;
+    background-color: #fffdc0;
   }
   .card-title {
     border-bottom: 1px solid black;
@@ -27,58 +110,13 @@ sort-by {
   }
 }
 
+.fa-star {
+  color: #ef006d;
+}
+
+.fa-star-o {
+  color: #2666eb;
+}
 dt {
   font-weight: normal;
-}
-
-.btn {
-  display: inline-block;
-  font-weight: normal;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  border: 1px solid transparent;
-  padding: 0.2rem 0.55rem;
-  font-size: 1rem;
-  line-height: 1.25;
-  border-radius: 0.1rem;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-}
-
-.img-holder{
-    float: left;
-    width: 153px;
-}
-
-.card-block{
-    width: calc(100% - 154px);
-}
-
-.MovieDetailsCard{
-    dl{
-        margin-bottom: 0px;
-    }
-
-    .review-comments{
-        margin-bottom: 12px;
-        max-height: 48px;
-        min-height: 48px;
-        overflow: hidden;
-    }
-}
-
-.activeButton {
-  background-color: #9947f3;
-  color: white;
-}
-
-.btn-secondary:hover {
-    color: #fff;
-    background-color: none;
-    border-color: none;
 }

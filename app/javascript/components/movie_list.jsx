@@ -15,6 +15,14 @@ class MovieList extends React.Component {
     });
   }
 
+  render() {
+    return (
+      <div className="moviesDisplay MovieList">
+        { this.renderMoviesList() }
+      </div>
+    );
+  }
+
   renderMoviesList() {
     return this.props.movies.map((movie) => {
       return this.renderMovie(movie);
@@ -23,22 +31,10 @@ class MovieList extends React.Component {
 
   renderMovie(movie) {
     return (
-      <div key={movie.id} >
+      <div className="card" key={movie.id} >
         <Movie
            routes={ this.props.routes }
            movie={ movie } />
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div className="MovieList">
-        <div className="row">
-          <div className="col-md-8">
-            { this.renderMoviesList() }
-          </div>
-        </div>
       </div>
     );
   }

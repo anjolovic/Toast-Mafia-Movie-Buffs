@@ -6,38 +6,52 @@ class BottomLinks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      card: this.props.card
+      card: props.card,
+      showFullReviews: props.showFullReviews
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      card: nextProps.card
+      card: nextProps.card,
+      showFullReviews: nextProps.showFullReviews
     });
   }
 
   renderActionButton() {
     if(this.state.card) {
       return(
-        <button className="btn btn-secondary btn-sm" onClick={ this.props.leaveReview }>
-          Leave Review
-        </button>
+        <div className="col-sm-6">
+          <button className="btn btn-secondary btn-sm view-more"
+                  onClick={ this.props.showReviews }>
+            { this.state.showFullReviews ? 'View Less' : 'View More'}
+          </button>
+          <button className="btn btn-secondary btn-sm pull-right leave-review"
+                  onClick={ this.props.leaveReview }>
+            Leave Review
+          </button>
+        </div>
       );
     } else {
       return(
-        <button className="btn btn-secondary btn-sm" onClick={ this.props.submitReview }>
-          Submit
-        </button>
+        <div className="col-sm-12">
+          <button className="btn btn-secondary btn-sm cancel-review"
+                  onClick={ this.props.cancelReview }>
+            Cancel
+          </button>
+          <button className="btn btn-secondary btn-sm pull-right submit-review"
+                  onClick={ this.props.submitReview }>
+            Submit
+          </button>
+        </div>
       );
     }
   }
 
   render() {
     return(
-      <div className="row">
-        <div className="col-sm-3 pull-right">
-          { this.renderActionButton() }
-        </div>
+      <div className="row BottomLinks">
+        { this.renderActionButton() }
       </div>
     );
   }

@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    movies = serialize_collection(Movie.order(current_sort_order)
+    movies = serialize_collection(Movie.order_by(current_sort_order)
                                    .page(page_number)
                                    .includes(:genres, :reviews))
     if request.xhr?
@@ -16,12 +16,20 @@ class MoviesController < ApplicationController
   private
 
   def movies_index_data(movies)
-    Rails.logger.debug current_sort_order
     {
       routes: react_routes,
       movies: movies,
-      sort_order: current_sort_order
+      sort_order: current_sort_order,
+      recent_reviews: recent_reviews,
+      recent_movies: recent_movies
     }
+  end
+
+  def recent_reviews
+    ActiveModel::Serializer::CollectionSerializer.new(MovieReview.page(1),
+                                                      serializer: ReviewSerializer)
+      .as_json
+
   end
 
   def current_sort_order
@@ -29,7 +37,16 @@ class MoviesController < ApplicationController
       session[:sort_order] = sort_order
     end
 
-    session[:sort_order]
+    session[:sort_order] || sort_order
+  end
+
+  def recent_movies
+    movies = Movie.order_by("release_date DESC")
+             .page(page_number)
+             .includes(:genres, :reviews)
+    ActiveModel::Serializer::CollectionSerializer.new(movies,
+                                                      serializer: MovieSerializerStrippedDown)
+      .as_json
   end
 
   def serialize_collection(movies)
@@ -46,7 +63,7 @@ class MoviesController < ApplicationController
     order_map = {
       title: 'title ASC',
       release_date: 'release_date DESC',
-      popularity: 'popularity DESC'
+      genres: 'genres ASC'
     }
     order_map.fetch("#{params[:sort_order]}".to_sym, order_map[:title])
   end

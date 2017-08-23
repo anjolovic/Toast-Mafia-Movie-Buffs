@@ -20,7 +20,7 @@ class MoviePoster extends React.Component {
       <div className="img-holder relative MoviePoster">
         <img src={ this.state.imagePath } />
         <ReviewRating
-           className="text-center"
+           className="center-text"
            readOnly={ true }
            rating={ parseFloat(this.state.rating, 10) || 0 }
            />

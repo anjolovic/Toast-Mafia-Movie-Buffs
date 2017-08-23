@@ -18,7 +18,7 @@ class ReviewRating extends React.Component {
   }
 
   errorClass() {
-    return this.state.error ? "alert alert-danger" : "";
+    return this.state.error ? "danger" : "";
   }
 
   displayError() {
@@ -37,6 +37,9 @@ class ReviewRating extends React.Component {
            onChange={ this.props.onChange }
            readonly={ this.state.readOnly }
            />
+        <small className={`form-control-feedback ${this.displayError()}`}>
+          Please leave a rating.
+        </small>
       </div>
     );
   }

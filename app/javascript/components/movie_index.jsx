@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import SortBy from 'components/sort_by';
 import MovieList from 'components/movie_list';
+import RecentReviews from 'components/recent_reviews';
+import RecentMovies from 'components/recent_movies';
 
 class MovieIndex extends React.Component {
   constructor(props) {
     super(props);
     this.flushSortOrder = this.flushSortOrder.bind(this);
     this.state = {
-      sort_order: this.props.sort_order,
-      movies: this.props.movies,
-      routes: this.props.routes
+      sort_order: props.sort_order,
+      movies: props.movies,
+      routes: props.routes,
+      recent_reviews: props.recent_reviews,
+      recent_movies: props.recent_movies
     };
   }
 
@@ -26,22 +29,47 @@ class MovieIndex extends React.Component {
     });
   }
 
-  render() {
-    return(
-      <section className="MovieIndex">
-        <header className="container">
-          <SortBy
-             sortOrder={ this.state.sort_order }
-             setSortOrder={ this.flushSortOrder }
-             />
-        </header>
 
-        <article className="container">
-          <MovieList
-             routes={ this.state.routes }
-             movies={ this.state.movies }/>
-        </article>
-      </section>
+  render() {
+    const margin = {
+        marginTop: '40px'
+      };
+
+    const background = {
+      backgroundColor: '#FFFEE2'
+    }
+
+    return(
+      <div className="MovieIndex">
+        <SortBy
+           sortOrder={ this.state.sort_order }
+           setSortOrder={ this.flushSortOrder }
+           />
+
+        <section className="container">
+          <div className="row" style={margin}>
+            <div className="col-md-8 movies">
+              <MovieList
+                 routes={ this.state.routes }
+                 movies={ this.state.movies }
+               />
+            </div>
+            <div className="col-md-4">
+              <div className="card" >
+                <div className="card-body" style={background}>
+                  <RecentReviews
+                     reviews={ this.state.recent_reviews}
+                     />
+
+                  <RecentMovies
+                     movies={ this.state.recent_movies}
+                   />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     );
   }
 }

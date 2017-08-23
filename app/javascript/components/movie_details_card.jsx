@@ -6,9 +6,10 @@ class MovieDetailsCard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      movie: this.props.movie,
-      card: this.props.card,
-      reviews: this.props.reviews
+      movie: props.movie,
+      card: props.card,
+      reviews: props.reviews,
+      showFullReviews: props.showFullReviews
     };
   }
 
@@ -16,7 +17,8 @@ class MovieDetailsCard extends React.Component {
     this.setState({
       movie: nextProps.movie,
       card: nextProps.card,
-      reviews: nextProps.reviews
+      reviews: nextProps.reviews,
+      showFullReviews: nextProps.showFullReviews
     });
   }
 
@@ -39,6 +41,24 @@ class MovieDetailsCard extends React.Component {
     });
   }
 
+  reviewCommentContainerStyle() {
+    if(this.state.showFullReviews) {
+      return {
+        marginBottom: '12px',
+        maxHeight: '480px',
+        minHeight: '48px',
+        overflowY: 'auto'
+      };
+    } else {
+      return {
+        marginBottom: '12px',
+        maxHeight: '48px',
+        minHeight: '48px',
+        overflow: 'hidden'
+      };
+    }
+  }
+
   render() {
     if(this.state.card) {
       return(
@@ -48,14 +68,22 @@ class MovieDetailsCard extends React.Component {
           </h4>
 
           <dl className="row">
-            <dt className="col-sm-4"> Release Date:</dt>
-            <dd className="col-sm-8"> {this.state.movie.release_date} </dd>
+            <dt className="col-sm-4">
+              Release Date:
+            </dt>
+            <dd className="col-sm-8 release-date">
+              {this.state.movie.release_date}
+            </dd>
 
-            <dt className="col-sm-4"> Genres:</dt>
-            <dd className="col-sm-8"> {this.state.movie.genres.join(', ')} </dd>
+            <dt className="col-sm-4">
+              Genres:
+            </dt>
+            <dd className="col-sm-8 movie-genres">
+              {this.state.movie.genres.join(', ')}
+            </dd>
           </dl>
 
-          <div className="row review-comments">
+          <div className="row review-comments" style={ this.reviewCommentContainerStyle() }>
             { this.renderReviewComments() }
           </div>
         </div>

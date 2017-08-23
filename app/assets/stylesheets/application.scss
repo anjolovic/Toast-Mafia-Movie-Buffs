@@ -1,3 +1,30 @@
 @import "font-awesome";
 @import "bootstrap";
 @import "movies";
+
+
+// global styles
+
+nav{
+    border-bottom: 1px solid lightblue;
+}
+
+.display-block{
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.danger{
+    color: red;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.pull-right{
+    float: right;
+}

@@ -11,6 +11,8 @@ class Movie extends React.Component {
     this.cardBlockStyle = this.cardBlockStyle.bind(this);
     this.submitReview =this.submitReview.bind(this);
     this.leaveReview = this.leaveReview.bind(this);
+    this.cancelReview = this.cancelReview.bind(this);
+    this.showReviews = this.showReviews.bind(this);
     this.updateCurrentReview = this.updateCurrentReview.bind(this);
     this.updateCurrentRating = this.updateCurrentRating.bind(this);
     this.updateCurrentEmail = this.updateCurrentEmail.bind(this);
@@ -31,12 +33,21 @@ class Movie extends React.Component {
       ratingEmpty: false,
       email: '',
       emailError: false,
-      card: true
+      card: true,
+      showFullReviews: false
     };
   }
 
+  cancelReview() {
+    this.setState({card: true, showFullReviews: false});
+  }
+
   leaveReview() {
-    this.setState({card: false});
+    this.setState({card: false, showFullReviews: false});
+  }
+
+  showReviews() {
+    this.setState({showFullReviews: !this.state.showFullReviews});
   }
 
   formValid() {
@@ -131,6 +142,7 @@ class Movie extends React.Component {
                movie={ this.state.movie }
                reviews={ this.state.reviews }
                cardBlockStyle={ this.cardBlockStyle }
+               showFullReviews={ this.state.showFullReviews }
                card={ this.state.card } />
 
             <ReviewMovie
@@ -145,8 +157,11 @@ class Movie extends React.Component {
                card={ this.state.card } />
 
             <BottomLinks
+               showFullReviews={ this.state.showFullReviews }
                leaveReview={ this.leaveReview }
+               cancelReview={ this.cancelReview }
                submitReview={ this.submitReview }
+               showReviews={ this.showReviews }
                card={ this.state.card } />
           </div>
         </div>

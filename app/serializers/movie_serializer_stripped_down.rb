@@ -1,9 +1,5 @@
-class MovieSerializer < ActiveModel::Serializer
-  attributes :id, :title, :poster_path, :release_date, :genres, :reviews, :rating
-
-  def genres
-    object.genres.map(&:name)
-  end
+class MovieSerializerStrippedDown < ActiveModel::Serializer
+  attributes :id, :title, :rating
 
   def rating
     reviews = object.reviews.where.not(rating: nil)
